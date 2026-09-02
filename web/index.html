@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jerry — Live Interview</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">◆</span>
+        <div class="brand-text">
+          <span class="brand-name">Jerry</span>
+          <span class="brand-sub">AI Interview Agent</span>
+        </div>
+      </div>
+
+      <div class="header-progress" id="headerProgress" hidden>
+        <span class="header-progress-label" id="progressLabel">Question 1 of 7</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <span class="timer mono" id="elapsed" hidden>00:00</span>
+        <div class="conn" id="conn">
+          <span class="dot"></span>
+          <span id="connLabel">Connecting…</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- LOBBY: shown before the first question is asked -->
+    <main class="lobby" id="lobby">
+      <div class="lobby-portrait" id="lobbyPortraitSlot"></div>
+      <h1 class="lobby-title" id="lobbyTitle">Preparing your interview…</h1>
+      <p class="lobby-copy" id="lobbyCopy">
+        Jerry is warming up. Once the interview starts on this computer,
+        it will appear here automatically.
+      </p>
+      <div class="mic-check" id="micCheck" hidden>
+        <span class="status-dot"></span>
+        <div class="mic-check-text">
+          <span id="micCheckLabel">Checking microphone…</span>
+          <span class="mic-check-sub" id="micCheckSub"></span>
+        </div>
+      </div>
+    </main>
+
+    <!-- LIVE: shown once the interview is underway -->
+    <main class="stage" id="stage" hidden>
+      <section class="agent-panel">
+        <div class="avatar" id="avatar"></div>
+
+        <div class="status-pill" id="statusPill">
+          <span class="status-dot"></span>
+          <span id="statusLabel">Waiting…</span>
+        </div>
+
+        <div class="waveform" id="waveform" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+
+        <p class="last-line" id="lastLine" aria-live="polite"></p>
+      </section>
+
+      <section class="transcript-panel">
+        <div class="transcript-header">
+          <span class="card-title">Transcript</span>
+        </div>
+        <div class="transcript" id="transcript">
+          <p class="transcript-empty" id="transcriptEmpty">
+            What's said out loud will appear here as the conversation happens.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- DONE: shown once the interview has finished -->
+    <main class="done" id="done" hidden>
+      <div class="done-check" aria-hidden="true">✓</div>
+      <h1 class="lobby-title">Interview complete</h1>
+      <p class="lobby-copy">Thanks for chatting with Jerry today.</p>
+      <div class="done-stats">
+        <div class="done-stat">
+          <span class="done-stat-value" id="doneDuration">—</span>
+          <span class="done-stat-label">Duration</span>
+        </div>
+        <div class="done-stat">
+          <span class="done-stat-value" id="doneQuestions">—</span>
+          <span class="done-stat-label">Questions</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom control bar: always present once the interview view is live -->
+    <footer class="controls" id="controls" hidden>
+      <button class="btn btn-outline" id="testMicBtn" type="button">
+        <span class="btn-icon" aria-hidden="true">🎙</span> Test microphone
+      </button>
+      <div class="controls-spacer"></div>
+      <button class="btn btn-danger-outline" id="endBtn" type="button">
+        <span class="btn-icon" aria-hidden="true">⏹</span> End interview
+      </button>
+    </footer>
+  </div>
+
+  <!-- Test microphone modal (visual check only - see mic_check broadcast) -->
+  <div class="modal-backdrop" id="micModalBackdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="micModalTitle">
+      <h2 id="micModalTitle">Microphone check</h2>
+      <div class="modal-mic-row">
+        <span class="status-dot" id="modalMicDot"></span>
+        <div>
+          <div id="modalMicStatus">Checking…</div>
+          <div class="mic-check-sub" id="modalMicDevice"></div>
+        </div>
+      </div>
+      <p class="modal-note">
+        This mirrors the check Jerry ran at startup on this computer's
+        default microphone and speakers. To use a different device, change
+        the default in your system's sound settings and restart the
+        interview.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="micModalClose" type="button">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- End interview confirmation modal -->
+  <div class="modal-backdrop" id="endModalBackdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="endModalTitle">
+      <h2 id="endModalTitle">End the interview?</h2>
+      <p class="modal-note">Your progress so far will be saved.</p>
+      <div class="modal-actions">
+        <button class="btn btn-outline" id="endCancel" type="button">Continue interview</button>
+        <button class="btn btn-danger" id="endConfirm" type="button">End interview</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
