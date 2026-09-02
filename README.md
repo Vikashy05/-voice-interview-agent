@@ -1,9 +1,11 @@
 # Full-Duplex Voice Interview Agent
 
-This project is a Python voice interview agent named Jerry. It asks a fixed
-machine-learning interview script, listens through the microphone, transcribes
-answers with Groq Whisper, generates short follow-up turns with a Groq-hosted
-LLM, and speaks with Microsoft Edge TTS.
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-Orchestration-FF6F61?style=for-the-badge)
+![Groq](https://img.shields.io/badge/Groq-STT%20%26%20LLM-f34b7d?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
+This project is a high-performance Python voice interview agent named **Jerry**. It conducts structured Machine Learning technical interviews using a full-duplex speech engine: listening continuously through the microphone, transcribing answers with Groq Whisper, generating instant streaming turns with Groq LLMs, and synthesizing natural speech with Microsoft Edge TTS.
 
 The main goal is natural interview flow: Jerry can listen while speaking,
 distinguish short backchannels from real interruptions, stop playback quickly
