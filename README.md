@@ -118,9 +118,26 @@ No raw audio is saved.
 
 The default path is concurrent rather than turn-by-turn:
 
-```text
-microphone -> VAD -> partial/final STT -> LangGraph interview state
-LLM tokens -> chunker -> Edge TTS -> playback
+```mermaid
+flowchart TD
+    subgraph Input ["🎙️ Audio Capture"]
+        Mic["Microphone Input"] --> VAD["Voice Activity Detector (VAD)"]
+        VAD --> STT["Groq Whisper (STT)"]
+    end
+
+    subgraph Core ["🧠 Intelligence & Orchestration"]
+        STT --> Graph["LangGraph Interview Engine"]
+        Graph --> Brain["Groq LLM Engine"]
+        BargeGate["Fast Interruption Gate"] -.->|"Interrupt Event"| AudioPlayer
+    end
+
+    subgraph Output ["🔊 Audio Synthesis & Output"]
+        Brain --> Chunker["Streaming Chunker"]
+        Chunker --> TTS["Edge TTS"]
+        TTS --> AudioPlayer["Speaker Playback"]
+    end
+
+    Mic -.->|"Barge-in Monitoring"| BargeGate
 ```
 
 While Jerry is speaking, microphone capture continues. If the candidate speaks
