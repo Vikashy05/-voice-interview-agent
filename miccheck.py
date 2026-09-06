@@ -134,7 +134,7 @@ for name, val in [
     ("BARGE_RMS", barge), ("BARGE_RMS_MIN", barge_min),
 ]:
     src = re.sub(rf"^{name} = [0-9.]+", f"{name} = {val:.4f}",
-                 src, count=1, flags=re.M)
+                 src, count=1, flags=re.MULTILINE)
 p.write_text(src, encoding="utf-8")
 
 print()

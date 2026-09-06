@@ -105,6 +105,7 @@ def _check_mic() -> dict[str, Any]:
     the page, not just pass/fail.
     """
     import sounddevice as sd
+
     from . import config as C
 
     try:

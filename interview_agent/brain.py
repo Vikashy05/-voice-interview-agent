@@ -1,5 +1,5 @@
 """Groq-backed speech-to-text and the interviewer's language model. this brain.py"""
-from __future__ import annotations 
+from __future__ import annotations
 
 import io
 import threading
@@ -160,7 +160,7 @@ def _chat(messages: list[dict], max_tokens: int = 90) -> str:
 _PUNCT = {
     "—": ", ", "–": ", ", "‒": "-", "‑": "-", "‐": "-",
     "’": "'", "‘": "'", "“": '"', "”": '"',
-    "…": "...", " ": " ", " ": " ", "​": "",
+    "…": "...", " ": " ", " ": " ", "\u200b": "",
 }
 
 

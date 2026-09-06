@@ -7,9 +7,9 @@ import json
 import sys
 
 from . import audio, brain, duplex, graph, graph_duplex
-from . import session as sess
-from . import recorder as rec
 from . import config as C
+from . import recorder as rec
+from . import session as sess
 
 # Windows consoles default to cp1252, which raises on characters the model or
 # Whisper may legitimately produce. Never let printing abort an interview.

@@ -135,7 +135,7 @@ class Microphone:
         self._stream: sd.InputStream | None = None
         self.block = int(C.SAMPLE_RATE * C.BLOCK_MS / 1000)
 
-    def __enter__(self) -> "Microphone":
+    def __enter__(self) -> Microphone:
         def cb(indata, _frames, _t, status):
             self.frames.put(indata[:, 0].copy())
 

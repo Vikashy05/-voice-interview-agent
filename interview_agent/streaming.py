@@ -15,9 +15,8 @@ import queue
 import re
 import threading
 import time
+from collections.abc import Iterator
 from dataclasses import dataclass, field
-from typing import Iterator
-
 
 from . import audio, brain
 from . import config as C

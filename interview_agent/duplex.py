@@ -25,15 +25,14 @@ import queue
 import random
 import threading
 import time
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Callable
 
 import numpy as np
 
 from . import audio, brain, interrupt
 from . import config as C
-
 
 # ============================================================================
 # ENUMS
@@ -467,7 +466,7 @@ class DuplexSession:
 
         self._threads.clear()
 
-    def __enter__(self) -> "DuplexSession":
+    def __enter__(self) -> DuplexSession:
 
         self.start()
 
@@ -1339,7 +1338,7 @@ class DuplexSession:
     def _await_verdict(
         self,
         timeout: float = 3.0,
-    ) -> "interrupt.Verdict":
+    ) -> interrupt.Verdict:
 
         deadline = (
             time.monotonic()

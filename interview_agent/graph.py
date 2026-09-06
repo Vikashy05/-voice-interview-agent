@@ -9,9 +9,8 @@ routes back to where it left off.
 """
 from __future__ import annotations
 
-from typing import Annotated, Any, Literal, TypedDict
-
 import sys
+from typing import Annotated, Any, Literal, TypedDict
 
 from langgraph.graph import END, StateGraph
 

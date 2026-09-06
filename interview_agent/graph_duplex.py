@@ -13,11 +13,9 @@ from typing import Annotated, Any, Literal, TypedDict
 
 from langgraph.graph import END, StateGraph
 
-from . import brain
-from . import duplex
-from . import guardrails
-from . import session as sess
+from . import brain, duplex, guardrails
 from . import recorder as rec
+from . import session as sess
 from .questions import GREETING, QUESTIONS, SIGNOFF
 
 
@@ -44,7 +42,7 @@ class InterviewState(TypedDict, total=False):
 # Both are set by main before the graph runs.
 SESSION: duplex.DuplexSession | None = None
 VOICE: sess.VoiceSession | None = None      # state machine + latency metrics
-RECORDER: "rec.InterviewRecorder | None" = None   # saves answers (text only)
+RECORDER: rec.InterviewRecorder | None = None   # saves answers (text only)
 
 # Set by the UI when the candidate clicks "End interview". Checked between
 # turns so the background thread actually unwinds instead of continuing to
