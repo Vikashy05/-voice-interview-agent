@@ -9,6 +9,10 @@ edge-tts>=7.2.8
 sounddevice>=0.5.6
 soundfile>=0.14.0
 
+# Web interfaces
+fastapi>=0.115.0
+gradio>=5.0.0
+uvicorn>=0.30.0
 
 # Optional: only needed if DATABASE_URL is set in .env
 psycopg[binary]>=3.3.3
